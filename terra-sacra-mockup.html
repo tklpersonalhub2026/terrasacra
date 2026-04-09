@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terra Sacra — Device Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#13100d;
+  font-family:'Jost',sans-serif;
+  min-height:100vh;
+  padding:3rem 1.5rem 6rem;
+}
+.stage-header{text-align:center;margin-bottom:3.5rem}
+.stage-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.8rem);color:#f0ebe2;font-weight:300;letter-spacing:.1em;margin-bottom:.4rem}
+.stage-sub{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:#c9a84c}
+
+.device-row{display:flex;align-items:flex-start;justify-content:center;gap:clamp(1.5rem,3vw,3rem);flex-wrap:wrap}
+.device-col{display:flex;flex-direction:column;align-items:center;gap:.9rem}
+.device-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,226,.35)}
+
+/* DESKTOP */
+.desktop-frame{width:min(760px,88vw);background:#111;border-radius:10px 10px 4px 4px;box-shadow:0 40px 100px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.07);overflow:hidden}
+.desktop-bar{height:26px;background:#1e1a16;display:flex;align-items:center;padding:0 12px;gap:5px;border-bottom:1px solid rgba(255,255,255,.05)}
+.dd{width:9px;height:9px;border-radius:50%}
+.dd1{background:#ff5f57}.dd2{background:#ffbd2e}.dd3{background:#28c840}
+.durl{flex:1;margin-left:10px;height:14px;background:rgba(255,255,255,.06);border-radius:3px;max-width:240px;display:flex;align-items:center;padding:0 7px;font-size:.5rem;color:rgba(255,255,255,.28);letter-spacing:.04em}
+.desktop-screen{width:100%;max-height:520px;overflow-y:auto}
+.dstand{width:28%;height:14px;background:#1e1a16;margin:0 auto;border-radius:0 0 5px 5px}
+.dbase{width:48%;height:5px;background:#191510;margin:0 auto;border-radius:0 0 3px 3px}
+
+/* TABLET */
+.tablet-frame{width:290px;background:#111;border-radius:16px;padding:16px 10px;box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.06)}
+.tcam{width:7px;height:7px;background:#1e1a16;border-radius:50%;margin:0 auto 8px}
+.tablet-screen{border-radius:4px;overflow:hidden;max-height:460px;overflow-y:auto}
+.thome{width:32px;height:32px;border-radius:50%;border:2px solid #1e1a16;margin:8px auto 0}
+
+/* PHONE */
+.phone-frame{width:180px;background:#111;border-radius:26px;padding:10px 7px;box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.06)}
+.pnotch{width:64px;height:16px;background:#111;border-radius:0 0 11px 11px;margin:0 auto 5px;position:relative;z-index:2}
+.phone-screen{border-radius:5px;overflow:hidden;max-height:400px;overflow-y:auto}
+.phome{display:flex;justify-content:center;padding:7px 0 2px}
+.ppill{width:44px;height:3.5px;background:#222;border-radius:2px}
+
+/* ── SITE VARS ── */
+:root{
+  --cream:#f7f3ec;--warm:#faf8f4;
+  --terra:#b5522a;--dark:#1c1814;--mid:#6b5c4e;
+  --border:#ddd6cc;--gold:#c9a84c;
+}
+
+/* NAV */
+.nav{background:var(--dark);display:flex;align-items:center;justify-content:space-between;padding:0 1rem;height:38px;border-bottom:1px solid rgba(255,255,255,.06)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:.9rem;letter-spacing:.12em;color:var(--cream)}
+.navlinks{display:flex;gap:.8rem;list-style:none}
+.navlinks a{color:rgba(247,243,236,.5);font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.navlinks a.act{color:var(--cream)}
+.cartbtn{background:var(--terra);color:#fff;border:none;padding:.25rem .6rem;font-family:'Jost',sans-serif;font-size:.48rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+
+.nav-tab{background:var(--dark);display:flex;align-items:center;justify-content:space-between;padding:0 .8rem;height:34px;border-bottom:1px solid rgba(255,255,255,.06)}
+.navlinks-tab{display:flex;gap:.55rem;list-style:none}
+.navlinks-tab a{color:rgba(247,243,236,.5);font-size:.44rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none}
+.navlinks-tab a.act{color:var(--cream)}
+
+.nav-ph{background:var(--dark);display:flex;align-items:center;justify-content:space-between;padding:0 .7rem;height:32px}
+.ham{display:flex;flex-direction:column;gap:2.5px}
+.ham span{display:block;width:14px;height:1.2px;background:rgba(247,243,236,.55)}
+.logo-ph{font-family:'Cormorant Garamond',serif;font-size:.78rem;letter-spacing:.1em;color:var(--cream)}
+
+/* HERO */
+.hero{position:relative;overflow:hidden}
+.hero img{width:100%;display:block;object-fit:cover;object-position:center 55%}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(28,24,20,.05) 0%,rgba(28,24,20,.7) 100%)}
+.hero-txt{position:absolute;bottom:0;left:0;right:0;padding:.8rem .9rem}
+.eyebrow{font-size:.42rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.22rem;display:flex;align-items:center;gap:.45rem}
+.eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--gold)}
+.h1{font-family:'Cormorant Garamond',serif;color:var(--cream);font-weight:300;line-height:1.1}
+.h1 em{font-style:italic;color:var(--gold)}
+.hdesc{color:rgba(247,243,236,.68);line-height:1.6;margin-top:.28rem}
+
+/* BREADCRUMB */
+.bread{padding:.3rem .75rem;font-size:.42rem;letter-spacing:.08em;color:var(--mid);border-bottom:1px solid var(--border);background:var(--warm)}
+.bread span{color:var(--terra)}
+
+/* FILTER */
+.fbar{background:var(--cream);padding:.42rem .75rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:.3rem}
+.ftags{display:flex;gap:.28rem;flex-wrap:wrap}
+.ftag{padding:.16rem .45rem;border:1px solid var(--border);background:none;font-family:'Jost',sans-serif;font-size:.42rem;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;color:var(--mid)}
+.ftag.on{background:var(--terra);border-color:var(--terra);color:#fff}
+.fcount{font-size:.44rem;color:var(--mid)}
+
+/* GRID */
+.gwrap{padding:.65rem;background:var(--warm)}
+.grid{display:grid;gap:.55rem}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g1{grid-template-columns:1fr}
+
+/* TILE */
+.tile{background:#fff;border:1px solid var(--border);cursor:pointer;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.tile:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(28,24,20,.1)}
+.timg{position:relative;overflow:hidden;aspect-ratio:4/3}
+.timg img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.tile:hover .timg img{transform:scale(1.05)}
+.bdg{position:absolute;top:.3rem;left:.3rem;color:#fff;font-size:.36rem;letter-spacing:.1em;text-transform:uppercase;padding:.14rem .38rem}
+.bio{background:#5a7a42}.sp{background:var(--terra)}.art{background:#4a6080}
+.tbody{padding:.42rem .48rem .52rem}
+.prod{font-size:.36rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.15rem}
+.tname{font-family:'Cormorant Garamond',serif;font-size:.8rem;font-weight:400;color:var(--dark);line-height:1.2;margin-bottom:.22rem}
+.tdesc{font-size:.42rem;line-height:1.55;color:var(--mid);margin-bottom:.35rem}
+.tfoot{display:flex;align-items:center;justify-content:space-between}
+.tprice{font-family:'Cormorant Garamond',serif;font-size:.76rem;font-weight:600;color:var(--dark)}
+.tcta{font-size:.36rem;letter-spacing:.08em;text-transform:uppercase;color:var(--terra)}
+
+/* PHONE TILE — horizontal */
+.tile-h{background:#fff;border:1px solid var(--border);display:flex;overflow:hidden;cursor:pointer}
+.tile-h .timg{width:80px;flex-shrink:0;aspect-ratio:unset}
+.tile-h .timg img{height:100%}
+.tile-h .tbody{padding:.38rem .44rem;flex:1;display:flex;flex-direction:column;justify-content:center}
+
+/* BAND */
+.band{background:var(--dark);margin:.65rem;padding:.82rem .9rem}
+.band-ey{font-size:.38rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.28rem}
+.band-t{font-family:'Cormorant Garamond',serif;font-size:.92rem;color:var(--cream);font-weight:300;line-height:1.2;margin-bottom:.28rem}
+.band-b{font-size:.42rem;line-height:1.65;color:rgba(247,243,236,.52);margin-bottom:.5rem}
+.band-btn{border:1px solid rgba(247,243,236,.22);color:var(--cream);background:none;font-family:'Jost',sans-serif;font-size:.4rem;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .65rem;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="stage-header">
+  <h1 class="stage-title">Terra Sacra · Sauces &amp; Condiments</h1>
+  <p class="stage-sub">Responsive Design Mockup · Desktop · Tablet · iPhone</p>
+</div>
+
+<div class="device-row">
+
+<!-- ══ DESKTOP ══ -->
+<div class="device-col">
+  <span class="device-label">Desktop — 1280px · 3-column</span>
+  <div class="desktop-frame">
+    <div class="desktop-bar">
+      <div class="dd dd1"></div><div class="dd dd2"></div><div class="dd dd3"></div>
+      <div class="durl">theterrasacra.com/sauces</div>
+    </div>
+    <div class="desktop-screen">
+      <nav class="nav">
+        <div class="logo">Terra Sacra</div>
+        <ul class="navlinks">
+          <li><a href="#">Chocolate</a></li><li><a href="#">Honey</a></li>
+          <li><a href="#">Olive Oil</a></li><li><a href="#">Vinegar</a></li>
+          <li><a href="#" class="act">Sauces</a></li>
+          <li><a href="#">Pasta &amp; Rice</a></li><li><a href="#">La Dispensa</a></li>
+        </ul>
+        <button class="cartbtn">Cart (0)</button>
+      </nav>
+
+      <div class="hero" style="height:190px">
+        <img src="https://theterrasacra.com/cdn/shop/files/Tomatoes.jpg?v=1760015246&width=1600" alt="Hero" style="height:190px">
+        <div class="hero-ov"></div>
+        <div class="hero-txt">
+          <div class="eyebrow">Terra Sacra · Curated Collection</div>
+          <h1 class="h1" style="font-size:1.7rem">Sauces &amp; <em>Condiments</em></h1>
+          <p class="hdesc" style="font-size:.52rem;max-width:380px">Slow-simmered heirloom tomatoes, hand-harvested capers, centuries of Italian artisan tradition — each jar tells a story of place.</p>
+        </div>
+      </div>
+
+      <div class="bread">Home / <span>Sauces &amp; Condiments</span></div>
+
+      <div class="fbar">
+        <div class="ftags">
+          <button class="ftag on">All (15)</button>
+          <button class="ftag">Tomato</button>
+          <button class="ftag">Spicy</button>
+          <button class="ftag">Organic</button>
+          <button class="ftag">Pesto &amp; Spreads</button>
+        </div>
+        <span class="fcount">15 products</span>
+      </div>
+
+      <div class="gwrap">
+        <div class="grid g3">
+
+          <!-- Real products -->
+          <div class="tile">
+            <div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Datterini_Caramella_-_Pomodori_interi_in_succo_-_Indispensabile_-_TERRA_SACRA_01_2796_33247cfc-a040-46de-8157-0dc9120837b1.jpg?v=1758181719&width=533" alt="Candy Datterini"><span class="bdg bio">Organic</span></div>
+            <div class="tbody"><div class="prod">Indispensabile</div><div class="tname">Candy Datterini Tomato Sauce</div><div class="tdesc">Sun-kissed datterini preserved whole in their own nectar. Intensely sweet, brilliantly pure.</div><div class="tfoot"><span class="tprice">$19.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Capers_and_Anchovies_Sauce_-_Etimo_-_TERRA_SACRA_01_2779_5d123a47-64a8-426b-a6f4-7308a3f84c2d.jpg?v=1758181965&width=533" alt="Capers Anchovies"></div>
+            <div class="tbody"><div class="prod">Etimo</div><div class="tname">Capers &amp; Anchovies Sauce</div><div class="tdesc">Briny Sicilian capers meet silver anchovies in a deeply savory, complex condiment.</div><div class="tfoot"><span class="tprice">$16.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Gia_Giu_-_Pomodori_interi_in_succo_-_Indispensabile_-_TERRA_SACRA_01_2790_c467a075-5f6b-4e40-85dd-c39c9c4d725b.jpg?v=1758181726&width=533" alt="Già Giù"><span class="bdg bio">Organic</span></div>
+            <div class="tbody"><div class="prod">Indispensabile</div><div class="tname">Già Giù — Yellow Tomato Sauce</div><div class="tdesc">Rare golden whole tomatoes with a floral brightness. Milder and sweeter than red.</div><div class="tfoot"><span class="tprice">$19.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Salsa_Jalapeno_-_Guerzoni_-_TERRA_SACRA_01_2884_3d02195b-67c3-435e-b8e2-a7c0a1716b81.jpg?v=1758181699&width=533" alt="Green Jalapeño"><span class="bdg sp">Spicy</span></div>
+            <div class="tbody"><div class="prod">Acetaia Guerzoni</div><div class="tname">Green Jalapeño Sauce</div><div class="tdesc">Fermented with balsamic expertise — lively heat balanced by nuanced depth from Modena.</div><div class="tfoot"><span class="tprice">$14.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Salsa_Habanero_-_Guerzoni_-_TERRA_SACRA_01_2885_e2b27284-c477-4203-a57d-da54ccfbff08.jpg?v=1758181696&width=533" alt="Habanero"><span class="bdg sp">Spicy</span></div>
+            <div class="tbody"><div class="prod">Acetaia Guerzoni</div><div class="tname">Habanero Sauce</div><div class="tdesc">Fiery habanero tempered by Emilian fermentation mastery. Fruity, intense, unforgettable.</div><div class="tfoot"><span class="tprice">$14.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Pomodori_a_pacchetelle_-_Indispensabile_-_TERRA_SACRA_01_2806_252c94cd-395a-4e08-a873-4d3288678037.jpg?v=1758181728&width=533" alt="Pacchetelle"><span class="bdg bio">Organic</span></div>
+            <div class="tbody"><div class="prod">Indispensabile</div><div class="tname">Pacchetelle Tomato Sauce</div><div class="tdesc">Hand-torn tomato wedges packed with fresh basil — the ancient Neapolitan way.</div><div class="tfoot"><span class="tprice">$11.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Salsa_Jalapeno_-_Guerzoni_-_TERRA_SACRA_01_2887_b39631cc-bd03-4ab3-9d20-bb59e341c202.jpg?v=1758181694&width=533" alt="Red Jalapeño"><span class="bdg sp">Spicy</span></div>
+            <div class="tbody"><div class="prod">Acetaia Guerzoni</div><div class="tname">Red Jalapeño Sauce</div><div class="tdesc">Ripe red jalapeños at peak sweetness, crafted by four generations of fermentation mastery.</div><div class="tfoot"><span class="tprice">$15.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Passata_di_3_pomodori_-_Indispensabile_-_TERRA_SACRA_01_2814_f102f8e7-dc4b-4a1e-92b1-51fb78a26a3c.jpg?v=1758181733&width=533" alt="Three Tomatoes"><span class="bdg bio">Organic</span></div>
+            <div class="tbody"><div class="prod">Indispensabile</div><div class="tname">Three Tomatoes Sauce</div><div class="tdesc">A silken passata from three complementary heirloom varieties — the essential Italian pantry jar.</div><div class="tfoot"><span class="tprice">$14.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Antichi_pomodori_di_Napoli_-_Indispensabile_-_TERRA_SACRA_01_2800_b6a1c73a-1ad0-4beb-8b08-62ffe7427b8e.jpg?v=1758181723&width=533" alt="Naples Tomato"><span class="bdg bio">Organic</span></div>
+            <div class="tbody"><div class="prod">Indispensabile</div><div class="tname">Traditional Naples Tomato Sauce</div><div class="tdesc">Volcanic Campanian terroir — the heirloom tomato that built an empire of flavor.</div><div class="tfoot"><span class="tprice">$19.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Ragu_vegano_-_Indispensabile_-_TERRA_SACRA_01_2808_2b048180-a999-41ca-b0d9-5ceedbce495e.jpg?v=1758181730&width=533" alt="Four Tomatoes"><span class="bdg bio">Organic</span></div>
+            <div class="tbody"><div class="prod">Indispensabile</div><div class="tname">Four Tomatoes Sauce</div><div class="tdesc">Four heirloom varieties slow-cooked into one deeply layered, complex sauce of character.</div><div class="tfoot"><span class="tprice">$14.40</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <!-- Fictional products — Unsplash food photography (no brands) -->
+          <div class="tile">
+            <div class="timg">
+              <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&q=80&fit=crop&crop=center" alt="Genovese Pesto">
+              <span class="bdg art">Artisan</span>
+            </div>
+            <div class="tbody"><div class="prod">Frantoio Anfosso · Liguria</div><div class="tname">Genovese Basil Pesto DOP</div><div class="tdesc">Stone-ground Ligurian basil, Taggiasca olive oil, and aged Parmigiano — pesto in its truest form.</div><div class="tfoot"><span class="tprice">$22.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg">
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&fit=crop&crop=center" alt="Nduja Calabrese">
+              <span class="bdg sp">Spicy</span>
+            </div>
+            <div class="tbody"><div class="prod">Maestri Calabresi · Calabria</div><div class="tname">'Nduja di Spilinga</div><div class="tdesc">Silky, spreadable pork from Calabria's hilltop village — fiery, smoky, and utterly addictive.</div><div class="tfoot"><span class="tprice">$18.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg">
+              <img src="https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=600&q=80&fit=crop&crop=center" alt="Sicilian Red Pesto">
+              <span class="bdg bio">Organic</span>
+            </div>
+            <div class="tbody"><div class="prod">Casa Marrazzo · Sicily</div><div class="tname">Sicilian Red Pesto</div><div class="tdesc">Slow-dried Pachino tomatoes, toasted almonds, and aged Sicilian pecorino. A sun-drenched island in a jar.</div><div class="tfoot"><span class="tprice">$20.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80&fit=crop&crop=center" alt="Black Truffle Sauce">
+              <span class="bdg art">Artisan</span>
+            </div>
+            <div class="tbody"><div class="prod">Savini Tartufi · Umbria</div><div class="tname">Black Truffle &amp; Porcini Sauce</div><div class="tdesc">Hand-foraged Umbrian truffles meet wild porcini in a deeply earthy, luxurious condiment.</div><div class="tfoot"><span class="tprice">$38.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg">
+              <img src="https://images.unsplash.com/photo-1606914501449-5a96b6ce24ca?w=600&q=80&fit=crop&crop=center" alt="Taggiasca Olive Tapenade">
+              <span class="bdg art">Artisan</span>
+            </div>
+            <div class="tbody"><div class="prod">Ranise · Liguria</div><div class="tname">Taggiasca Olive Tapenade</div><div class="tdesc">Buttery Ligurian Taggiasca olives — mild, complex, extraordinary — crushed into an elegant spread.</div><div class="tfoot"><span class="tprice">$24.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+          <div class="tile">
+            <div class="timg">
+              <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80&fit=crop&crop=center" alt="Ligurian Walnut Cream">
+            </div>
+            <div class="tbody"><div class="prod">Levante · Liguria</div><div class="tname">Ligurian Walnut Cream</div><div class="tdesc">Blanched walnuts, fresh ricotta, and Parmigiano — the ancient Ligurian sauce that dresses pasta like velvet.</div><div class="tfoot"><span class="tprice">$21.00</span><span class="tcta">Explore →</span></div></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="band">
+        <div class="band-ey">Our Philosophy</div>
+        <div class="band-t">Artisan producers.<br>Extraordinary terroir.</div>
+        <div class="band-b">Every product is sourced directly from small-batch Italian producers who have spent generations perfecting their craft. No intermediaries. No compromise.</div>
+        <button class="band-btn">Our Story</button>
+      </div>
+
+    </div><!-- /desktop-screen -->
+  </div>
+  <div class="dstand"></div><div class="dbase"></div>
+</div><!-- /desktop-col -->
+
+
+<!-- ══ TABLET ══ -->
+<div class="device-col">
+  <span class="device-label">Tablet — 768px · 2-column</span>
+  <div class="tablet-frame">
+    <div class="tcam"></div>
+    <div class="tablet-screen">
+
+      <nav class="nav-tab">
+        <div class="logo" style="font-size:.78rem">Terra Sacra</div>
+        <ul class="navlinks-tab">
+          <li><a href="#">Honey</a></li>
+          <li><a href="#">Olive Oil</a></li>
+          <li><a href="#" class="act">Sauces</a></li>
+          <li><a href="#">Pasta</a></li>
+          <li><a href="#">Dispensa</a></li>
+        </ul>
+        <button class="cartbtn" style="font-size:.42rem">Cart</button>
+      </nav>
+
+      <div class="hero" style="height:148px">
+        <img src="https://theterrasacra.com/cdn/shop/files/Tomatoes.jpg?v=1760015246&width=1200" alt="" style="height:148px">
+        <div class="hero-ov"></div>
+        <div class="hero-txt">
+          <div class="eyebrow" style="font-size:.38rem">Terra Sacra Collection</div>
+          <h1 class="h1" style="font-size:1.38rem">Sauces &amp; <em>Condiments</em></h1>
+          <p class="hdesc" style="font-size:.46rem;max-width:240px">Slow-simmered heirloom tomatoes and centuries of Italian artisan tradition.</p>
+        </div>
+      </div>
+
+      <div class="bread" style="font-size:.4rem">Home / <span>Sauces</span></div>
+
+      <div class="fbar" style="padding:.35rem .6rem">
+        <div class="ftags">
+          <button class="ftag on" style="font-size:.38rem">All (15)</button>
+          <button class="ftag" style="font-size:.38rem">Tomato</button>
+          <button class="ftag" style="font-size:.38rem">Spicy</button>
+          <button class="ftag" style="font-size:.38rem">Organic</button>
+        </div>
+      </div>
+
+      <div class="gwrap" style="padding:.55rem">
+        <div class="grid g2" style="gap:.5rem">
+
+          <div class="tile"><div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Datterini_Caramella_-_Pomodori_interi_in_succo_-_Indispensabile_-_TERRA_SACRA_01_2796_33247cfc-a040-46de-8157-0dc9120837b1.jpg?v=1758181719&width=533" alt=""><span class="bdg bio">Organic</span></div><div class="tbody"><div class="prod">Indispensabile</div><div class="tname">Candy Datterini</div><div class="tdesc">Whole datterini in their own pure nectar.</div><div class="tfoot"><span class="tprice">$19.00</span><span class="tcta">→</span></div></div></div>
+
+          <div class="tile"><div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Gia_Giu_-_Pomodori_interi_in_succo_-_Indispensabile_-_TERRA_SACRA_01_2790_c467a075-5f6b-4e40-85dd-c39c9c4d725b.jpg?v=1758181726&width=533" alt=""><span class="bdg bio">Organic</span></div><div class="tbody"><div class="prod">Indispensabile</div><div class="tname">Già Giù Yellow Tomato</div><div class="tdesc">Rare golden tomatoes — floral, sweet, beautiful.</div><div class="tfoot"><span class="tprice">$19.00</span><span class="tcta">→</span></div></div></div>
+
+          <div class="tile"><div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Capers_and_Anchovies_Sauce_-_Etimo_-_TERRA_SACRA_01_2779_5d123a47-64a8-426b-a6f4-7308a3f84c2d.jpg?v=1758181965&width=533" alt=""></div><div class="tbody"><div class="prod">Etimo</div><div class="tname">Capers &amp; Anchovies</div><div class="tdesc">Sicilian capers and silver anchovies — bold and complex.</div><div class="tfoot"><span class="tprice">$16.00</span><span class="tcta">→</span></div></div></div>
+
+          <div class="tile"><div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Antichi_pomodori_di_Napoli_-_Indispensabile_-_TERRA_SACRA_01_2800_b6a1c73a-1ad0-4beb-8b08-62ffe7427b8e.jpg?v=1758181723&width=533" alt=""><span class="bdg bio">Organic</span></div><div class="tbody"><div class="prod">Indispensabile</div><div class="tname">Traditional Naples Tomato</div><div class="tdesc">Volcanic Campanian terroir and centuries of tradition.</div><div class="tfoot"><span class="tprice">$19.00</span><span class="tcta">→</span></div></div></div>
+
+          <div class="tile"><div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Salsa_Habanero_-_Guerzoni_-_TERRA_SACRA_01_2885_e2b27284-c477-4203-a57d-da54ccfbff08.jpg?v=1758181696&width=533" alt=""><span class="bdg sp">Spicy</span></div><div class="tbody"><div class="prod">Acetaia Guerzoni</div><div class="tname">Habanero Sauce</div><div class="tdesc">Fiery and fruity, tempered by Modenese fermentation craft.</div><div class="tfoot"><span class="tprice">$14.00</span><span class="tcta">→</span></div></div></div>
+
+          <div class="tile"><div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Salsa_Jalapeno_-_Guerzoni_-_TERRA_SACRA_01_2884_3d02195b-67c3-435e-b8e2-a7c0a1716b81.jpg?v=1758181699&width=533" alt=""><span class="bdg sp">Spicy</span></div><div class="tbody"><div class="prod">Acetaia Guerzoni</div><div class="tname">Green Jalapeño Sauce</div><div class="tdesc">Fresh, herbaceous heat balanced by nuanced vinegar depth.</div><div class="tfoot"><span class="tprice">$14.00</span><span class="tcta">→</span></div></div></div>
+
+          <div class="tile"><div class="timg"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&q=80&fit=crop" alt="Pesto"><span class="bdg art">Artisan</span></div><div class="tbody"><div class="prod">Frantoio Anfosso · Liguria</div><div class="tname">Genovese Basil Pesto DOP</div><div class="tdesc">Stone-ground Ligurian basil, Taggiasca oil, aged Parmigiano.</div><div class="tfoot"><span class="tprice">$22.00</span><span class="tcta">→</span></div></div></div>
+
+          <div class="tile"><div class="timg"><img src="https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=600&q=80&fit=crop" alt="Sicilian Pesto"><span class="bdg bio">Organic</span></div><div class="tbody"><div class="prod">Casa Marrazzo · Sicily</div><div class="tname">Sicilian Red Pesto</div><div class="tdesc">Pachino tomatoes, almonds, and pecorino — Sicily in a jar.</div><div class="tfoot"><span class="tprice">$20.00</span><span class="tcta">→</span></div></div></div>
+
+          <div class="tile"><div class="timg"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80&fit=crop" alt="Truffle"><span class="bdg art">Artisan</span></div><div class="tbody"><div class="prod">Savini Tartufi · Umbria</div><div class="tname">Black Truffle &amp; Porcini</div><div class="tdesc">Hand-foraged Umbrian truffles meet wild porcini.</div><div class="tfoot"><span class="tprice">$38.00</span><span class="tcta">→</span></div></div></div>
+
+          <div class="tile"><div class="timg"><img src="https://images.unsplash.com/photo-1606914501449-5a96b6ce24ca?w=600&q=80&fit=crop" alt="Olive Tapenade"><span class="bdg art">Artisan</span></div><div class="tbody"><div class="prod">Ranise · Liguria</div><div class="tname">Taggiasca Olive Tapenade</div><div class="tdesc">Buttery Ligurian Taggiasca olives crushed into a silken spread.</div><div class="tfoot"><span class="tprice">$24.00</span><span class="tcta">→</span></div></div></div>
+
+        </div>
+      </div>
+
+      <div class="band" style="margin:.55rem;padding:.75rem .85rem">
+        <div class="band-ey">Our Philosophy</div>
+        <div class="band-t" style="font-size:.88rem">Small producers.<br>Extraordinary terroir.</div>
+        <div class="band-b" style="font-size:.4rem;margin-bottom:.45rem">Sourced directly from artisan Italian producers. No intermediaries. No compromise.</div>
+        <button class="band-btn" style="font-size:.38rem">Our Story</button>
+      </div>
+
+    </div>
+    <div class="thome"></div>
+  </div>
+</div><!-- /tablet-col -->
+
+
+<!-- ══ PHONE ══ -->
+<div class="device-col">
+  <span class="device-label">iPhone — 390px · Horizontal tiles</span>
+  <div class="phone-frame">
+    <div class="pnotch"></div>
+    <div class="phone-screen">
+
+      <nav class="nav-ph">
+        <div class="ham"><span></span><span></span><span></span></div>
+        <div class="logo-ph">Terra Sacra</div>
+        <span style="color:rgba(247,243,236,.6);font-size:.7rem">🛒</span>
+      </nav>
+
+      <div class="hero" style="height:105px">
+        <img src="https://theterrasacra.com/cdn/shop/files/Tomatoes.jpg?v=1760015246&width=800" alt="" style="height:105px">
+        <div class="hero-ov"></div>
+        <div class="hero-txt" style="padding:.45rem .55rem">
+          <div class="eyebrow" style="font-size:.36rem">Collection</div>
+          <h1 class="h1" style="font-size:1.05rem">Sauces &amp; <em>Condiments</em></h1>
+        </div>
+      </div>
+
+      <div class="fbar" style="padding:.28rem .5rem">
+        <div class="ftags" style="gap:.22rem">
+          <button class="ftag on" style="font-size:.36rem">All</button>
+          <button class="ftag" style="font-size:.36rem">Tomato</button>
+          <button class="ftag" style="font-size:.36rem">Spicy</button>
+          <button class="ftag" style="font-size:.36rem">Organic</button>
+        </div>
+      </div>
+
+      <div class="gwrap" style="padding:.46rem">
+        <div class="grid g1" style="gap:.46rem">
+
+          <div class="tile-h"><div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Datterini_Caramella_-_Pomodori_interi_in_succo_-_Indispensabile_-_TERRA_SACRA_01_2796_33247cfc-a040-46de-8157-0dc9120837b1.jpg?v=1758181719&width=533" alt=""></div><div class="tbody"><div class="prod" style="font-size:.34rem">Indispensabile</div><div class="tname" style="font-size:.68rem;margin-bottom:.15rem">Candy Datterini</div><div class="tdesc" style="font-size:.38rem;margin-bottom:.22rem">Whole tomatoes in pure nectar — intensely sweet.</div><div class="tfoot"><span class="tprice" style="font-size:.66rem">$19.00</span><span class="tcta" style="font-size:.34rem">→</span></div></div></div>
+
+          <div class="tile-h"><div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Gia_Giu_-_Pomodori_interi_in_succo_-_Indispensabile_-_TERRA_SACRA_01_2790_c467a075-5f6b-4e40-85dd-c39c9c4d725b.jpg?v=1758181726&width=533" alt=""></div><div class="tbody"><div class="prod" style="font-size:.34rem">Indispensabile</div><div class="tname" style="font-size:.68rem;margin-bottom:.15rem">Già Giù Yellow Tomato</div><div class="tdesc" style="font-size:.38rem;margin-bottom:.22rem">Rare golden whole tomatoes, floral and gentle.</div><div class="tfoot"><span class="tprice" style="font-size:.66rem">$19.00</span><span class="tcta" style="font-size:.34rem">→</span></div></div></div>
+
+          <div class="tile-h"><div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Capers_and_Anchovies_Sauce_-_Etimo_-_TERRA_SACRA_01_2779_5d123a47-64a8-426b-a6f4-7308a3f84c2d.jpg?v=1758181965&width=533" alt=""></div><div class="tbody"><div class="prod" style="font-size:.34rem">Etimo</div><div class="tname" style="font-size:.68rem;margin-bottom:.15rem">Capers &amp; Anchovies</div><div class="tdesc" style="font-size:.38rem;margin-bottom:.22rem">Sicilian capers and silver anchovies — bold and briny.</div><div class="tfoot"><span class="tprice" style="font-size:.66rem">$16.00</span><span class="tcta" style="font-size:.34rem">→</span></div></div></div>
+
+          <div class="tile-h"><div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Antichi_pomodori_di_Napoli_-_Indispensabile_-_TERRA_SACRA_01_2800_b6a1c73a-1ad0-4beb-8b08-62ffe7427b8e.jpg?v=1758181723&width=533" alt=""></div><div class="tbody"><div class="prod" style="font-size:.34rem">Indispensabile</div><div class="tname" style="font-size:.68rem;margin-bottom:.15rem">Traditional Naples Tomato</div><div class="tdesc" style="font-size:.38rem;margin-bottom:.22rem">Grown in volcanic Campanian soils — the tomato of legend.</div><div class="tfoot"><span class="tprice" style="font-size:.66rem">$19.00</span><span class="tcta" style="font-size:.34rem">→</span></div></div></div>
+
+          <div class="tile-h"><div class="timg"><img src="https://theterrasacra.com/cdn/shop/files/Salsa_Habanero_-_Guerzoni_-_TERRA_SACRA_01_2885_e2b27284-c477-4203-a57d-da54ccfbff08.jpg?v=1758181696&width=533" alt=""></div><div class="tbody"><div class="prod" style="font-size:.34rem">Acetaia Guerzoni</div><div class="tname" style="font-size:.68rem;margin-bottom:.15rem">Habanero Sauce</div><div class="tdesc" style="font-size:.38rem;margin-bottom:.22rem">Fiery, fruity heat from Modena's fermentation masters.</div><div class="tfoot"><span class="tprice" style="font-size:.66rem">$14.00</span><span class="tcta" style="font-size:.34rem">→</span></div></div></div>
+
+          <div class="tile-h"><div class="timg"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=400&q=80&fit=crop" alt="Pesto"></div><div class="tbody"><div class="prod" style="font-size:.34rem">Frantoio Anfosso · Liguria</div><div class="tname" style="font-size:.68rem;margin-bottom:.15rem">Genovese Basil Pesto DOP</div><div class="tdesc" style="font-size:.38rem;margin-bottom:.22rem">Stone-ground basil and Taggiasca oil — pesto perfected.</div><div class="tfoot"><span class="tprice" style="font-size:.66rem">$22.00</span><span class="tcta" style="font-size:.34rem">→</span></div></div></div>
+
+          <div class="tile-h"><div class="timg"><img src="https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=400&q=80&fit=crop" alt="Sicilian Pesto"></div><div class="tbody"><div class="prod" style="font-size:.34rem">Casa Marrazzo · Sicily</div><div class="tname" style="font-size:.68rem;margin-bottom:.15rem">Sicilian Red Pesto</div><div class="tdesc" style="font-size:.38rem;margin-bottom:.22rem">Pachino tomatoes, almonds, and aged Sicilian pecorino.</div><div class="tfoot"><span class="tprice" style="font-size:.66rem">$20.00</span><span class="tcta" style="font-size:.34rem">→</span></div></div></div>
+
+          <div class="tile-h"><div class="timg"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80&fit=crop" alt="Truffle"></div><div class="tbody"><div class="prod" style="font-size:.34rem">Savini Tartufi · Umbria</div><div class="tname" style="font-size:.68rem;margin-bottom:.15rem">Black Truffle &amp; Porcini</div><div class="tdesc" style="font-size:.38rem;margin-bottom:.22rem">Hand-foraged Umbrian truffles and wild porcini mushrooms.</div><div class="tfoot"><span class="tprice" style="font-size:.66rem">$38.00</span><span class="tcta" style="font-size:.34rem">→</span></div></div></div>
+
+          <div class="tile-h"><div class="timg"><img src="https://images.unsplash.com/photo-1606914501449-5a96b6ce24ca?w=400&q=80&fit=crop" alt="Olive Tapenade"></div><div class="tbody"><div class="prod" style="font-size:.34rem">Ranise · Liguria</div><div class="tname" style="font-size:.68rem;margin-bottom:.15rem">Taggiasca Olive Tapenade</div><div class="tdesc" style="font-size:.38rem;margin-bottom:.22rem">Buttery Ligurian olives crushed into a silken, elegant spread.</div><div class="tfoot"><span class="tprice" style="font-size:.66rem">$24.00</span><span class="tcta" style="font-size:.34rem">→</span></div></div></div>
+
+          <div class="tile-h"><div class="timg"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80&fit=crop" alt="Walnut Cream"></div><div class="tbody"><div class="prod" style="font-size:.34rem">Levante · Liguria</div><div class="tname" style="font-size:.68rem;margin-bottom:.15rem">Ligurian Walnut Cream</div><div class="tdesc" style="font-size:.38rem;margin-bottom:.22rem">Blanched walnuts, ricotta, and Parmigiano — a velvet sauce.</div><div class="tfoot"><span class="tprice" style="font-size:.66rem">$21.00</span><span class="tcta" style="font-size:.34rem">→</span></div></div></div>
+
+          <div class="tile-h"><div class="timg"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80&fit=crop" alt="Nduja"></div><div class="tbody"><div class="prod" style="font-size:.34rem">Maestri Calabresi · Calabria</div><div class="tname" style="font-size:.68rem;margin-bottom:.15rem">'Nduja di Spilinga</div><div class="tdesc" style="font-size:.38rem;margin-bottom:.22rem">Silky spreadable pork from Calabria's hilltop village — fiery and addictive.</div><div class="tfoot"><span class="tprice" style="font-size:.66rem">$18.00</span><span class="tcta" style="font-size:.34rem">→</span></div></div></div>
+
+        </div>
+      </div>
+
+      <div class="band" style="margin:.46rem;padding:.68rem .75rem">
+        <div class="band-ey">Philosophy</div>
+        <div class="band-t" style="font-size:.78rem">Small producers.<br>Extraordinary terroir.</div>
+        <div class="band-b" style="font-size:.38rem;margin-bottom:.4rem">Sourced directly from Italian artisans. No compromise.</div>
+        <button class="band-btn" style="font-size:.36rem">Our Story</button>
+      </div>
+
+    </div>
+    <div class="phome"><div class="ppill"></div></div>
+  </div>
+</div><!-- /phone-col -->
+
+</div><!-- /device-row -->
+</body>
+</html>
